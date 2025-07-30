@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0                # Specify version explicitly (good practice)
+    environment:
+      MYSQL_ROOT_PASSWORD: pass@123
+      MYSQL_DATABASE: testingdb     # ✅ Typo fixed (was: MYSYQL_DATABASE)
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - two-tier
+    restart: unless-stopped
+
+  flask:
+    image : shivam821/two-tier-flask-backend:latest
+    container_name: two-tier-flask-backend
+    ports:
+      - "5001:5000"                 # Flask runs on 5000, mapped to 5001
+    environment:
+      DB_HOST: mysql               # Internal Docker DNS name
+      DB_USER: root
+      DB_PASS: pass@123
+      DB_NAME: testingdb
+    depends_on:
+      - mysql                     # Ensure MySQL starts before Flask
+    networks:
+      - two-tier
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+
+networks:
+  two-tier:
