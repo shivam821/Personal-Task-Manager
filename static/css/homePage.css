@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,900;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.review-header {
+    text-align: center;
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: 550;
+    margin-top: 20px;
+}
+
+.blog-container {
+    padding: 15px 9%;
+    padding-bottom: 100px;
+}
+
+.blog-container .form-group {
+    text-align: left;
+    margin-left: 15px;
+    margin-top: 20px;
+    justify-content: left;
+}
+
+.review-separator {
+  margin: 20px 0;
+  border: 1px solid #ced4da;
+}
