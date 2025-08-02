@@ -5,20 +5,20 @@ import os
 
 app = Flask(__name__)
 
-# db = mysql.connector.connect(
-#     host='192.168.29.144',
-#     port=3306,
-#     user='root',
-#     password='pass@123',
-#     database='blog_posts'
-# )
-
-db = mysql.connector.connect (
-    host = os.environ.get("DB_HOST"),
-    user = os.environ.get("DB_USER"),
-    password = os.environ.get("DB_PASS"),
-    database = os.environ.get("DB_NAME")
+db = mysql.connector.connect(
+    host='#',
+    port=3306,
+    user='#',
+    password='#',
+    database='#'
 )
+
+# db = mysql.connector.connect (
+#     host = os.environ.get("DB_HOST"),
+#     user = os.environ.get("DB_USER"),
+#     password = os.environ.get("DB_PASS"),
+#     database = os.environ.get("DB_NAME")
+# )
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -36,7 +36,7 @@ def home():
     cursor.execute("select * from blogs order by id DESC")
     posts = cursor.fetchall()
     cursor.close()
-    return render_template('home.html', posts=posts)
+    return render_template('spa.html', posts=posts)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
